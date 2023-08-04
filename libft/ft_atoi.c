@@ -10,23 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft.h"
+
 int	ft_atoi(char *str)
 {
 	int	neg;
 	int	num;
 
-	while (*str == ' ' || *str == '\t' || *str == '\n' || *str == '\v'
-		|| *str == '\f' || *str == '\r')
-	{
+	while (ft_isspace(*str))
 		str++;
-	}
 	neg = 1;
 	while (*str == '+' || *str == '-')
 	{
 		if (*str == '-')
-		{
 			neg *= -1;
-		}
 		str++;
 	}
 	num = 0;

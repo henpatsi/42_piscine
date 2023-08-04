@@ -11,19 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-
-int	str_len(char *str)
-{
-	int	count;
-
-	count = 1;
-	while (*str != '\0')
-	{
-		count++;
-		str++;
-	}
-	return (count);
-}
+#include "ft.h"
 
 void	str_cpy(char *src, char *dest)
 {
@@ -41,8 +29,8 @@ char	*ft_strdup(char *src)
 	int		len;
 	char	*dup;
 
-	len = str_len(src);
-	dup = malloc(len * sizeof(char));
+	len = ft_strlen(src);
+	dup = malloc((len + 1) * sizeof(char));
 	if (dup == 0)
 		return (dup);
 	str_cpy(src, dup);

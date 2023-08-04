@@ -37,7 +37,7 @@ int	count_seps(char *str, char *charset)
 	return (count);
 }
 
-int	str_len(char *str, char *end)
+int	sub_str_len(char *str, char *end)
 {
 	int	count;
 
@@ -50,13 +50,13 @@ int	str_len(char *str, char *end)
 	return (count);
 }
 
-char	*ft_strdup(char *str, char *end)
+char	*str_dup(char *str, char *end)
 {
 	int		len;
 	char	*dup;
 	char	*tab;
 
-	len = str_len(str, end);
+	len = sub_str_len(str, end);
 	dup = malloc(len * sizeof(char));
 	if (dup == 0)
 		return (dup);
@@ -88,7 +88,7 @@ char	**ft_split(char *str, char *charset)
 		{
 			if (str != start && in_charset(*(str - 1), charset) == 0)
 			{
-				strs[i] = ft_strdup(start, str);
+				strs[i] = str_dup(start, str);
 				if (strs[i++] == 0)
 					return (0);
 			}

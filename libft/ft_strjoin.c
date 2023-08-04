@@ -11,34 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-
-void	ft_strcat(char *s1, char *s2)
-{
-	while (*s1 != '\0')
-	{
-		s1++;
-	}
-	while (*s2 != '\0')
-	{
-		*s1 = *s2;
-		s1++;
-		s2++;
-	}
-	*s1 = '\0';
-}
-
-int	ft_strlen(char *str)
-{
-	int	len;
-
-	len = 0;
-	while (*str != '\0')
-	{	
-		len++;
-		str++;
-	}
-	return (len);
-}
+#include "ft.h"
 
 int	get_total_len(int size, char **strs, char *sep)
 {

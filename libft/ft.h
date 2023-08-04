@@ -18,6 +18,7 @@ int	ft_atoi(char *str);
 int	ft_count_if(char **tab, int length, int (*f)(char*));
 void	ft_foreach(int *tab, int length, void (*f)(int));
 int	ft_is_sort(int *tab, int length, int (*f)(int, int));
+int	ft_isspace(char	c);
 int	ft_factorial(int nb);
 int	ft_power(int nb, int power);
 int	*ft_map(int *tab, int length, int (*f)(int));

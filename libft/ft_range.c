@@ -19,9 +19,7 @@ int	*ft_range(int min, int max)
 	int	i;
 
 	if (min >= max)
-	{
 		return (0);
-	}
 	arr = malloc((max - min) * sizeof(int));
 	if (arr == 0)
 		return (arr);
