@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <limits.h>
+#include <ctype.h>
 
 #include "ft.h"
 
@@ -49,6 +50,63 @@ void test_ft_factorial(void)
 	printf("-1 = 0: %s\n", ft_factorial(-1) == 0 ? "PASSED" : "FAILED");
 }
 
+void	test_ft_foreach(void)
+{
+	int	ints[] = {0, 1, -1, 1234, -1234, 2147483647, -2147483648};
+	int	length = 7;
+	
+	printf("\nft_foreach (test with ft_putnbr):\n");
+	printf("(0, 1, -1, 1234, -1234, 2147483647, -2147483648) output:\n");
+	ft_foreach(ints, length, ft_putnbr);
+	printf("\n");
+}
+
+int	intdif(int a, int b)
+{
+	return (a - b);
+}
+
+void	test_ft_is_sort(void)
+{
+	int	ints1[] = {0, 1, 2, 2, 3, 4};
+	int	ints2[] = {4, 3, 2, 2, 1, 0};
+	int	ints3[] = {0, 1, 2, 3, 2, 4};
+
+	printf("\nft_is_sort (test with intdif in ft_is_sort.c):\n");
+	printf("(0, 1, 2, 2, 3, 4) = true: %s\n", ft_is_sort(ints1, 6, intdif) ? "PASSED" : "FAILED");
+	printf("(4, 3, 2, 2, 1, 0) = true: %s\n", ft_is_sort(ints2, 6, intdif) ? "PASSED" : "FAILED");
+	printf("(0, 1, 2, 3, 2, 4) = false: %s\n", !ft_is_sort(ints3, 6, intdif) ? "PASSED" : "FAILED");
+}
+
+void	test_ft_isspace(void)
+{
+	char	c = 0;
+	
+	printf("\nft_isspace:\n");
+	while (1)
+	{
+		if (isspace(c))
+			printf("char decimal %d detected as space: %s\n", c, ft_isspace(c) ? "PASSED" : "FAILED");
+		else if (ft_isspace(c))
+			printf("char decimal %d incorrectly detected as space: FAILED", c);
+		if (c == 127)
+			break;
+		c++;
+	}
+}
+
+void test_ft_map(void)
+{
+	int	ints[] = {-1, 0, 1, 2, 3, 11};
+	int	*intsfac;
+	
+	printf("\nft_map (test with ft_factorial):\n");
+	printf("input = (-1, 0, 1, 2, 3, 11)\n");
+	intsfac = ft_map(ints, 6, ft_factorial);
+	printf("output = (%d, %d, %d, %d, %d, %d)\n", intsfac[0], intsfac[1], intsfac[2], intsfac[3], intsfac[4], intsfac[5]);
+	printf("correct = (0, 1, 1, 2, 6, 39916800)\n");
+}
+
 void	test_ft_str_is_lowercase(void)
 {
 	printf("\nft_str_is_lowercase\n");
@@ -65,6 +123,10 @@ int	main(void)
 	test_ft_atoi();
 	test_ft_count_if();
 	test_ft_factorial();
+	test_ft_foreach();
+	test_ft_is_sort();
+	test_ft_isspace();
+	test_ft_map();
 
 	test_ft_str_is_lowercase();
 
