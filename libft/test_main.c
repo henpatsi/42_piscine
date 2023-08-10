@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <limits.h>
 #include <ctype.h>
+#include <stdlib.h>
 
 #include "ft.h"
 
@@ -9,14 +10,14 @@ void	test_ft_any(void)
 	char	*strs[] = {"HELLO", "Hello", "hello", 0};
 	char	*strs1[] = {"HELLO", "Hello", "heLLo", 0};
 	
-	printf("\nft_any (test with ft_str_islowercase):\n");
+	printf("\n%s (test with ft_str_islowercase):\n", __func__);
 	printf("('HELLO', 'Hello', 'hello', 0) = true: %s\n", ft_any(strs, ft_str_is_lowercase) ? "PASSED" : "FAILED");
 	printf("('HELLO', 'Hello', 'hellO', 0) = false: %s\n", !ft_any(strs1, ft_str_is_lowercase) ? "PASSED" : "FAILED");
 }
 
 void	test_ft_atoi(void)
 {
-	printf("\nft_atoi:\n");
+	printf("\n%s:\n", __func__);
 	printf("'0' = 0: %s\n", ft_atoi("0") == 0 ? "PASSED" : "FAILED");
 	printf("'1' = 1: %s\n", ft_atoi("1") == 1 ? "PASSED" : "FAILED");
 	printf("'-1' = -1: %s\n", ft_atoi("-1") == -1 ? "PASSED" : "FAILED");
@@ -34,7 +35,7 @@ void	test_ft_count_if(void)
 	char	*strs1[] = {"HELLO", "Hello", "heLLo"};
 	char	*strs2[] = {"hello", "hi", "Hello"};
 	
-	printf("\nft_count_if (test with ft_str_islowercase):\n");
+	printf("\n%s (test with ft_str_islowercase):\n", __func__);
 	printf("('HELLO', 'Hello', 'hello') = 1: %s\n", ft_count_if(strs, 3, ft_str_is_lowercase) == 1 ? "PASSED" : "FAILED");
 	printf("('HELLO', 'Hello', 'hellO') = 0: %s\n", ft_count_if(strs1, 3, ft_str_is_lowercase) == 0 ? "PASSED" : "FAILED");
 	printf("('hello', 'hi', 'Hello') = 2: %s\n", ft_count_if(strs2, 3, ft_str_is_lowercase) == 2 ? "PASSED" : "FAILED");
@@ -42,7 +43,7 @@ void	test_ft_count_if(void)
 
 void test_ft_factorial(void)
 {
-	printf("\nft_factorial:\n");
+	printf("\n%s:\n", __func__);
 	printf("0 = 1: %s\n", ft_factorial(0) == 1 ? "PASSED" : "FAILED");
 	printf("1 = 1: %s\n", ft_factorial(1) == 1 ? "PASSED" : "FAILED");
 	printf("3 = 6: %s\n", ft_factorial(3) == 6 ? "PASSED" : "FAILED");
@@ -55,7 +56,7 @@ void	test_ft_foreach(void)
 	int	ints[] = {0, 1, -1, 1234, -1234, 2147483647, -2147483648};
 	int	length = 7;
 	
-	printf("\nft_foreach (test with ft_putnbr):\n");
+	printf("\n%s (test with ft_putnbr):\n", __func__);
 	printf("(0, 1, -1, 1234, -1234, 2147483647, -2147483648) output:\n");
 	ft_foreach(ints, length, ft_putnbr);
 	printf("\n");
@@ -72,7 +73,7 @@ void	test_ft_is_sort(void)
 	int	ints2[] = {4, 3, 2, 2, 1, 0};
 	int	ints3[] = {0, 1, 2, 3, 2, 4};
 
-	printf("\nft_is_sort (test with intdif in ft_is_sort.c):\n");
+	printf("\n%s (test with intdif in test main):\n", __func__);
 	printf("(0, 1, 2, 2, 3, 4) = true: %s\n", ft_is_sort(ints1, 6, intdif) ? "PASSED" : "FAILED");
 	printf("(4, 3, 2, 2, 1, 0) = true: %s\n", ft_is_sort(ints2, 6, intdif) ? "PASSED" : "FAILED");
 	printf("(0, 1, 2, 3, 2, 4) = false: %s\n", !ft_is_sort(ints3, 6, intdif) ? "PASSED" : "FAILED");
@@ -82,7 +83,7 @@ void	test_ft_isspace(void)
 {
 	char	c = 0;
 	
-	printf("\nft_isspace:\n");
+	printf("\n%s:\n", __func__);
 	while (1)
 	{
 		if (isspace(c))
@@ -100,16 +101,87 @@ void test_ft_map(void)
 	int	ints[] = {-1, 0, 1, 2, 3, 11};
 	int	*intsfac;
 	
-	printf("\nft_map (test with ft_factorial):\n");
+	printf("\n%s (test with ft_factorial):\n", __func__);
 	printf("input = (-1, 0, 1, 2, 3, 11)\n");
 	intsfac = ft_map(ints, 6, ft_factorial);
 	printf("output = (%d, %d, %d, %d, %d, %d)\n", intsfac[0], intsfac[1], intsfac[2], intsfac[3], intsfac[4], intsfac[5]);
 	printf("correct = (0, 1, 1, 2, 6, 39916800)\n");
 }
 
+void	test_ft_power(void)
+{
+	printf("\n%s:\n", __func__);
+	printf("10^-1 = 0: %s\n", ft_power(10, -1) == 0 ? "PASSED" : "FAILED");
+	printf("10⁰ = 1: %s\n", ft_power(10, 0) == 1 ? "PASSED" : "FAILED");
+	printf("10¹ = 0: %s\n", ft_power(10, 1) == 10 ? "PASSED" : "FAILED");
+	printf("10² = 0: %s\n", ft_power(10, 2) == 100 ? "PASSED" : "FAILED");
+}
+
+void	test_ft_putchar(void)
+{
+	printf("\n%s:\n", __func__);
+	ft_putchar('c');
+	ft_putchar('\n');
+}
+
+void	test_ft_putnbr(void)
+{
+	printf("\n%s:\n", __func__);	
+	printf("(0, 1, -1, 1234, -1234, 2147483647, -2147483648) output:\n");
+	ft_putnbr(0);
+	ft_putchar('\n');
+	ft_putnbr(1);
+	ft_putchar('\n');
+	ft_putnbr(-1);
+	ft_putchar('\n');
+	ft_putnbr(1234);
+	ft_putchar('\n');
+	ft_putnbr(-1234);
+	ft_putchar('\n');
+	ft_putnbr(2147483647);
+	ft_putchar('\n');
+	ft_putnbr(-2147483648);
+	ft_putchar('\n');
+}
+
+void	test_ft_putstr(void)
+{	
+	printf("\n%s:\n", __func__);	
+	ft_putstr("Printed using ft_putstr!\n");
+}
+
+int	test_range(int	min, int max)
+{
+	int	*range;
+	int	i;
+
+	printf("range %d to %d: ", min, max);
+	range = ft_range(min, max);
+	if (min >= max)
+		return (range == 0);
+	i = 0;
+	while (min + i < max)
+	{
+		if (range[i] != min + i)
+			return (0);
+		i++;
+	}
+	return (1);	
+}
+
+void	test_ft_range(void)
+{
+	printf("\n%s:\n", __func__);
+	printf("%s\n", test_range(0, 10) ? "PASSED" : "FAILED");
+	printf("%s\n", test_range(-10, 0) ? "PASSED" : "FAILED");
+	printf("%s\n", test_range(-1000000, 1000000) ? "PASSED" : "FAILED");
+	printf("%s\n", test_range(1, 1) ? "PASSED" : "FAILED");
+	printf("%s\n", test_range(2, 1) ? "PASSED" : "FAILED");
+}
+
 void	test_ft_str_is_lowercase(void)
 {
-	printf("\nft_str_is_lowercase\n");
+	printf("\n%s:\n", __func__);
 	printf("HELLO = false: %s\n", !ft_str_is_lowercase("HELLO") ? "PASSED" : "FAILED");
 	printf("Hello = false: %s\n", !ft_str_is_lowercase("Hello") ? "PASSED" : "FAILED");
 	printf("hellO = false: %s\n", !ft_str_is_lowercase("hellO") ? "PASSED" : "FAILED");
@@ -127,6 +199,11 @@ int	main(void)
 	test_ft_is_sort();
 	test_ft_isspace();
 	test_ft_map();
+	test_ft_power();
+	test_ft_putchar();
+	test_ft_putnbr();
+	test_ft_putstr();
+	test_ft_range();
 
 	test_ft_str_is_lowercase();
 
