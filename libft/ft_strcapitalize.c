@@ -10,13 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-void	char_to_lower(char *str)
-{
-	if (*str >= 65 && *str <= 90)
-	{
-		*str += 32;
-	}
-}
+#include "ft.h"
 
 char	*ft_strcapitalize(char *str)
 {
@@ -27,7 +21,7 @@ char	*ft_strcapitalize(char *str)
 	tab = str;
 	while (*str != '\0')
 	{	
-		char_to_lower(str);
+		ft_strlowcase(str);
 		if ((*str >= 97 && *str <= 122) || (*str >= 48 && *str <= 57))
 		{
 			if (cap_next && *str >= 97 && *str <= 122)
