@@ -313,7 +313,41 @@ void	test_ft_strcapitalize(void)
 
 void	test_ft_strcat(void)
 {
+	char	str1[100] = "The cat has a ";
+	char	str2[] = "hat";
 
+	printf("\n%s:\n", __func__);
+	ft_putstr(str1);
+	ft_putchar('\n');
+	ft_strcat(str1, str2);
+	ft_putstr(ft_strcat(str1, "\n"));
+	printf("%s\n", ft_strcmp(str1, "The cat has a hat\n") == 0 ? "PASSED" : "FAILED");
+}
+
+void	test_ft_strcmp(void)
+{
+	char	*str1 = "hi";
+	char	*str2 = "Hi";
+	char	*str3 = "hii";
+	char	*str4 = "h";
+
+	printf("\n%s:\n", __func__);
+	printf("%s = %s: (%d = 0) %s\n", str1, str1, ft_strcmp(str1, str1), ft_strcmp(str1, str1) == 0 ? "PASSED" : "FAILED");
+	printf("%s = %s: (%d = 32) %s\n", str1, str2, ft_strcmp(str1, str2), ft_strcmp(str1, str2) == 32 ? "PASSED" : "FAILED");
+	printf("%s = %s: (%d = -105) %s\n", str1, str3, ft_strcmp(str1, str3), ft_strcmp(str1, str3) == -105 ? "PASSED" : "FAILED");
+	printf("%s = %s: (%d = 105) %s\n", str1, str4, ft_strcmp(str1, str4), ft_strcmp(str1, str4) == 105 ? "PASSED" : "FAILED");
+}
+
+void	test_ft_strcpy(void)
+{
+	printf("\n%s:\n", __func__);
+	
+	char	*src = "retracted";
+	char	dest[20] = "secret";
+
+	printf("copy \"%s\" to dest containing \"%s\"\n", src, dest);
+	ft_strcpy(dest, src);
+	printf("dest = \"%s\": %s\n", dest, ft_strcmp(dest, "retracted") == 0 ? "PASSED" : "FAILED");
 }
 
 void	test_ft_str_is_lowercase(void)
@@ -348,6 +382,8 @@ int	main(void)
 	test_ft_split();
 	test_ft_strcapitalize();
 	test_ft_strcat();
+	test_ft_strcmp();
+	test_ft_strcpy();
 
 	test_ft_str_is_lowercase();
 
