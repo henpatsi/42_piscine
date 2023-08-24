@@ -3,6 +3,7 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
 #include "ft.h"
 
@@ -339,15 +340,30 @@ void	test_ft_strcmp(void)
 }
 
 void	test_ft_strcpy(void)
-{
-	printf("\n%s:\n", __func__);
-	
+{	
 	char	*src = "retracted";
 	char	dest[20] = "secret";
 
+	printf("\n%s:\n", __func__);
 	printf("copy \"%s\" to dest containing \"%s\"\n", src, dest);
 	ft_strcpy(dest, src);
 	printf("dest = \"%s\": %s\n", dest, ft_strcmp(dest, "retracted") == 0 ? "PASSED" : "FAILED");
+}
+
+void	test_ft_strdup(void)
+{
+	char	*str = "Duplicate this!";
+
+	printf("\n%s:\n", __func__);
+	printf("\"%s\" duplicate = \"%s\"\n", str, ft_strdup(str));
+}
+
+void	test_ft_str_is_alpha(void)
+{
+	printf("\n%s:\n", __func__);
+	printf("\"onlyletters\" = true: %s\n", ft_str_is_alpha("onlyletters") ? "PASSED" : "FAILED");
+	printf("\"also space\" = false: %s\n", !ft_str_is_alpha("also space") ? "PASSED" : "FAILED");
+	printf("\"andnumber1\" = false: %s\n", !ft_str_is_alpha("andnumber1") ? "PASSED" : "FAILED");
 }
 
 void	test_ft_str_is_lowercase(void)
@@ -358,6 +374,109 @@ void	test_ft_str_is_lowercase(void)
 	printf("hellO = false: %s\n", !ft_str_is_lowercase("hellO") ? "PASSED" : "FAILED");
 	printf("hello = true: %s\n", ft_str_is_lowercase("hello") ? "PASSED" : "FAILED");
 	printf("he77o = false: %s\n", !ft_str_is_lowercase("he770") ? "PASSED" : "FAILED");
+}
+
+void	test_ft_str_is_numeric(void)
+{
+	printf("\n%s:\n", __func__);
+	printf("\"0123456789\" = true: %s\n", ft_str_is_numeric("0123456789") ? "PASSED" : "FAILED");	
+	printf("\"O123456789\" = false: %s\n", !ft_str_is_numeric("O123456789") ? "PASSED" : "FAILED");	
+}	
+
+void	test_ft_str_is_printable(void)
+{
+	printf("\n%s:\n", __func__);
+	printf("\"hello\" = true: %s\n", ft_str_is_printable("hello") ? "PASSED" : "FAILED");
+	printf("\"hello\\n\" = false: %s\n", !ft_str_is_printable("hello\n") ? "PASSED" : "FAILED");	
+}
+
+void	test_ft_str_is_uppercase(void)
+{
+	printf("\n%s:\n", __func__);
+	printf("HELLO = true: %s\n", ft_str_is_uppercase("HELLO") ? "PASSED" : "FAILED");
+	printf("hELLO = false: %s\n", !ft_str_is_uppercase("hELLO") ? "PASSED" : "FAILED");
+	printf("HELLo = false: %s\n", !ft_str_is_uppercase("HELLo") ? "PASSED" : "FAILED");
+	printf("hello = false: %s\n", !ft_str_is_uppercase("hello") ? "PASSED" : "FAILED");
+	printf("HE77O = false: %s\n", !ft_str_is_uppercase("HE77O") ? "PASSED" : "FAILED");
+}
+
+void	test_ft_strjoin(void)
+{
+	char	*strs[] = {"one", "two", "three", 0};
+	char	*sep = " - ";
+
+	printf("\n%s:\n", __func__);
+	print_str_tab(strs);
+	printf(" joined by \"%s\"\n", sep);
+	printf("\"%s\"\n", ft_strjoin(3, strs, sep));
+}
+
+void	test_ft_strlen(void)
+{
+	printf("\n%s:\n", __func__);
+	printf("\"%s\" = 5: %s\n", "hello", ft_strlen("hello") == 5 ? "PASSED" : "FAILED");
+	printf("\"%s\" = 0: %s\n", "", ft_strlen("") == 0 ? "PASSED" : "FAILED");
+	printf("\"%s\" = 26: %s\n", "abcdefghijklmnopqrstuvwxyz", ft_strlen("abcdefghijklmnopqrstuvwxyz") == 26 ? "PASSED" : "FAILED");
+}
+
+void	test_ft_strlowcase(void)
+{
+	char	str1[] = "Hello";
+	char	str2[] = "HELLO";
+	char	str3[] = "234ADF234";
+
+	printf("\n%s:\n", __func__);
+	printf("\"%s\" to", str1);
+	printf("\"%s\"\n", ft_strlowcase(str1));
+	printf("\"%s\" to", str2);
+	printf("\"%s\"\n", ft_strlowcase(str2));
+	printf("\"%s\" to", str3);
+	printf("\"%s\"\n", ft_strlowcase(str3));
+}
+
+void	test_ft_strncmp(void)
+{
+	char	str1[] = "Hello";
+	char	str2[] = "HELLO";
+	char	str3[] = "Hel";
+	char	str4[] = "Helloo";
+
+	printf("\n%s:\n", __func__);
+	printf("\"%s\" cmp 5 \"%s\" = 32 : %s\n", str1, str2, ft_strncmp(str1, str2, 5) == 32 ? "PASSED" : "FAILED");
+	printf("\"%s\" cmp 1 \"%s\" = 0 : %s\n", str1, str2, ft_strncmp(str1, str2, 1) == 0 ? "PASSED" : "FAILED");
+	printf("\"%s\" cmp 4 \"%s\" = 108 : %s\n", str1, str3, ft_strncmp(str1, str3, 4) == 108 ? "PASSED" : "FAILED");
+	printf("\"%s\" cmp 3 \"%s\" = 0 : %s\n", str1, str3, ft_strncmp(str1, str3, 3) == 0 ? "PASSED" : "FAILED");
+	printf("\"%s\" cmp 5 \"%s\" = 0 : %s\n", str1, str4, ft_strncmp(str1, str4, 5) == 0 ? "PASSED" : "FAILED");
+	printf("\"%s\" cmp 6 \"%s\" = -111 : %s\n", str1, str4, ft_strncmp(str1, str4, 6) == -111 ? "PASSED" : "FAILED");
+}
+
+void	test_ft_strncpy(void)
+{
+	char	*src = "retracted";
+	char	dest[20] = "secret";
+
+	printf("\n%s:\n", __func__);
+	printf("copy 3 \"%s\" to dest containing \"%s\"\n", src, dest);
+	ft_strncpy(dest, src, 3);
+	printf("dest = \"%s\": %s\n", dest, ft_strcmp(dest, "retret") == 0 ? "PASSED" : "FAILED");
+	printf("copy 9 \"%s\" to dest containing \"%s\"\n", src, dest);
+	ft_strncpy(dest, src, 9);
+	printf("dest = \"%s\": %s\n", dest, ft_strcmp(dest, "retracted") == 0 ? "PASSED" : "FAILED");
+}
+
+void	test_ft_strstr(void)
+{
+	printf("\n%s:\n", __func__);
+}
+
+void	test_ft_strupcase(void)
+{
+	printf("\n%s:\n", __func__);
+}
+
+void	test_ft_swap(void)
+{
+	printf("\n%s:\n", __func__);
 }
 
 int	main(void)
@@ -384,8 +503,20 @@ int	main(void)
 	test_ft_strcat();
 	test_ft_strcmp();
 	test_ft_strcpy();
-
+	test_ft_strdup();
+	test_ft_str_is_alpha();
 	test_ft_str_is_lowercase();
+	test_ft_str_is_numeric();
+	test_ft_str_is_printable();
+	test_ft_str_is_uppercase();
+	test_ft_strjoin();
+	test_ft_strlen();
+	test_ft_strlowcase();
+	test_ft_strncmp();
+	test_ft_strncpy();
+	test_ft_strstr();
+	test_ft_strupcase();
+	test_ft_swap();
 
 	printf("\n");
 	printf("Tests finished after %ld seconds!\n", time(0) - start_time);
