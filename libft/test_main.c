@@ -466,17 +466,45 @@ void	test_ft_strncpy(void)
 
 void	test_ft_strstr(void)
 {
+	char	haystack[] = "There is a needle in me!";
+	char	needle[] = "needle";
+	char	aabc[] = "aabc";
+	char	aaabccdef[] = "aaabccdef";
+	char	*ptr1;
+	char	*ptr2;
+
 	printf("\n%s:\n", __func__);
+	ptr1 = ft_strstr(haystack, needle);
+	printf("haystack = \"%s\"\nneedle = \"%s\"\nfound = \"%s\" : %s\n", haystack, needle, ptr1, 
+			ft_strcmp(ptr1, "needle in me!") == 0 ? "PASSED" : "FAILED");
+	ptr2 = ft_strstr(aaabccdef, aabc);
+	printf("haystack = \"%s\"\nneedle = \"%s\"\nfound = \"%s\" : %s\n", aaabccdef, aabc, ptr2, 
+			ft_strcmp(ptr2, "aabccdef") == 0 ? "PASSED" : "FAILED");
 }
 
 void	test_ft_strupcase(void)
 {
+	char	str[] = "avaodfijv!!AFDavzzaApppvoxc?";
+	
 	printf("\n%s:\n", __func__);
+	printf("str = \"%s\"\n", str);
+	printf("strupcase = \"%s\"\n", ft_strupcase(str));
+	printf("%s\n", ft_strcmp(ft_strupcase(str), "AVAODFIJV!!AFDAVZZAAPPPVOXC?") == 0 ? "PASSED" : "FAILED");
+
 }
 
 void	test_ft_swap(void)
 {
+	int		x = 42;
+	int		y = 24;
+	int		*a = &x;
+	int		*b = &y;
+
 	printf("\n%s:\n", __func__);
+	printf("x = %d, y = %d\n", x, y);
+	ft_swap(a, b);
+	printf("x = %d, y = %d\n", x, y);
+	printf("%s\n", x == 24 && y == 42 ? "PASSED" : "FAILED");
 }
 
 int	main(void)
